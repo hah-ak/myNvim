@@ -11,13 +11,13 @@ vim.o.incsearch = false
 vim.wo.signcolumn = 'yes'
 
 ---WORKAROUND
-vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
-    group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
-    callback = function()
-        vim.opt.foldmethod = 'expr'
-        vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
-    end
-})
+-- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
+--     group = vim.api.nvim_create_augroup('TS_FOLD_WORKAROUND', {}),
+--     callback = function()
+--         vim.opt.foldmethod = 'expr'
+--         vim.opt.foldexpr   = 'nvim_treesitter#foldexpr()'
+--     end
+-- })
 ---ENDWORKAROUND
 
 local ok, _ = pcall(require, "utils")
@@ -35,4 +35,4 @@ map("n", "<C-`>", "<Cmd>NvimTreeToggle<CR>", { silent = true })
 map("n", "<C-1>", "<Cmd>NvimTreeFindFile<CR>", { silent = true })
 
 map("n", "<space>f", "<Cmd>lua vim.lsp.buf.format({async = true})<CR>", {silent = true})
-map("v", "<space>c", "y/<C-r>0<CR>cgn", { silent = false })
+map("v", "<space>c", "yh/<C-r>0<CR>cgn", { silent = false })

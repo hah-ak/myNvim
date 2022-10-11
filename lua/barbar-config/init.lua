@@ -1,6 +1,6 @@
 local util = require("utils")
 local map = util.map
-local otps = {silent = true, noremap = true}
+local opts = {silent = true, noremap = true}
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 

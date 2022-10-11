@@ -54,15 +54,15 @@ local config = {
                         path='/Users/gim-yongcheol/.jenv/versions/temurin64-17.0.4.1/'
                     }
                 -- }
-            }
-        }
-    },
+             }
+         }
+    }, 
     init_options = {
         bundles = bundles,
     },
     on_attach = function(client, bufnr)
         require('jdtls').setup_dap({hotcodereplace = 'auto'})
-        -- require('jdtls.dap').setup_dap_main_class_configs()
+        require('jdtls.dap').setup_dap_main_class_configs()
         map('n','<A-o>', '<Cmd>lua require(\'jdtls\').organize_imports()<CR>',{silent=true})
         map('n','crv', '<Cmd>lua require(\'jdtls\').extract_variable()<CR>',{silent=true})
         map('v','crv', '<Esc><Cmd>lua require(\'jdtls\').extract_variable(true)<CR>',{silent=true})
@@ -72,6 +72,6 @@ local config = {
         map('n','<leader>dn','<Cmd>lua require(\'jdtls\').test_nearest_method()<CR>',{silent=true})
         map('n','<leader>df','<Cmd>lua require(\'jdtls\').test_class()<CR>',{silent = true})
     end,
-    capabilities=capabilities
+    capabilities=capabilities,
 }
 require('jdtls').start_or_attach(config)

@@ -43,13 +43,9 @@ require("telescope").setup {
 require("telescope").load_extension("ui-select")
 require("telescope").load_extension("fzf")
 
-function map(mode, lhs, rhs, opts)
-    local options = { silent = true, noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
-end
+local ok, utils = pcall(require, "utils")
+local map = utils.map
+local opts = {silent = true, noremap = true}
 
 map('n', '<leader>ff', '<Cmd>Telescope find_files<cr>',opts)
 map('n', '<leader>fg', '<Cmd>Telescope live_grep<cr>',opts)

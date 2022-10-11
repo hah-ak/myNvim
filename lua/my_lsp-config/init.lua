@@ -47,5 +47,5 @@ lspconfig.sumneko_lua.setup({
 lspconfig.tsserver.setup(jts_lsp_config)
 -- lspconfig.eslint.setup(jts_lsp_config)
 lspconfig.pyright.setup({})
-
+lspconfig.clangd.setup({})
 -- vim.cmd [[autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll]]
