@@ -1,6 +1,7 @@
 local util = require("utils")
 local map = util.map
 local opts = {silent = true, noremap = true}
+
 map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
 map('n', '<A-.>', '<Cmd>BufferNext<CR>', opts)
 
@@ -19,7 +20,7 @@ map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', opts)
 map('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 
 map('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
-map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+map('n', '<A-c>', '<Cmd>confirm BufferClose<CR>', opts)
 
 map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
 map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', opts)
@@ -32,7 +33,7 @@ local uioptions = {
     auto_hide=false,
     tabpages=true,
     closeable=true,
-    clickable = ture,
+    clickable = true,
     icons = true,
     icon_custome_colors=false,
     icon_separator_active = '▎',

@@ -1,8 +1,8 @@
 local utils = require("utils")
 local map = utils.map
-local javaLspConfigPath = '/Users/gim-yongcheol/.config/nvim/java-lsp-plugin'
-local javaLspFilePath = "/Users/gim-yongcheol/.local/share/nvim/mason/packages/jdtls"
-
+local packagePath = os.getenv("HOME")..'/.local/share/nvim'
+local javaLspConfigPath = packagePath
+local javaLspFilePath = packagePath..'/mason/packages/jdtls'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
 
@@ -13,7 +13,7 @@ if not status_cmp_ok then
     return
 end
 capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 
 local bundles = {}
@@ -22,7 +22,7 @@ vim.list_extend(bundles, vim.split(vim.fn.glob(javaLspConfigPath..'/java-debug/c
 vim.list_extend(bundles, vim.split(vim.fn.glob(javaLspConfigPath..'/vscode-java-test/server/*.jar'), '\n'))
 local config = {  
     cmd = {
-        '/Users/gim-yongcheol/.jenv/versions/temurin64-18.0.2.1/bin/java',
+        '/Users/gim-yongcheol/.jenv/versions/temurin64-17.0.4.1/bin/java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
@@ -62,7 +62,7 @@ local config = {
     },
     on_attach = function(client, bufnr)
         require('jdtls').setup_dap({hotcodereplace = 'auto'})
-        require('jdtls.dap').setup_dap_main_class_configs()
+        require('jdtls.setup').add_commands()
         map('n','<A-o>', '<Cmd>lua require(\'jdtls\').organize_imports()<CR>',{silent=true})
         map('n','crv', '<Cmd>lua require(\'jdtls\').extract_variable()<CR>',{silent=true})
         map('v','crv', '<Esc><Cmd>lua require(\'jdtls\').extract_variable(true)<CR>',{silent=true})

@@ -1,14 +1,16 @@
-vim.api.nvim_command('colorscheme tokyonight')
-vim.api.nvim_command('set smartindent')
-vim.api.nvim_command('set tabstop=4')
-vim.api.nvim_command('set expandtab')
-vim.api.nvim_command('set shiftwidth=4')
-vim.api.nvim_command('set number')
-
-
+vim.o.background = "dark"
+vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[set nohidden]])
+vim.o.smartindent = true
+vim.o.expandtab = true
 vim.o.updatetime = 300
 vim.o.incsearch = false
-vim.wo.signcolumn = 'yes'
+vim.wo.signcolumn = "yes"
+vim.o.shiftwidth = 2
+vim.wo.number = true
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+vim.opt.termguicolors = true
 
 ---WORKAROUND
 -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
@@ -20,19 +22,34 @@ vim.wo.signcolumn = 'yes'
 -- })
 ---ENDWORKAROUND
 
-local ok, _ = pcall(require, "utils")
-local util = require("utils")
+local ok, util = pcall(require, "utils")
 local map = util.map
 require("nvim-tree").setup({
+    hijack_netrw = false,
     diagnostics = {
         enable = true,
     },
     git = {
-        ignore = false
-    }
+        ignore = false,
+    },
 })
+local ok, gitsigns = pcall(require, "gitsigns")
+if not ok then
+    print("not ok")
+end
+
+gitsigns.setup({
+    current_line_blame = true,
+    on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        map("n", "<space>gs", "<Cmd>Gitsigns<CR>", { silent = true })
+    end,
+})
+
 map("n", "<C-`>", "<Cmd>NvimTreeToggle<CR>", { silent = true })
 map("n", "<C-1>", "<Cmd>NvimTreeFindFile<CR>", { silent = true })
 
-map("n", "<space>f", "<Cmd>lua vim.lsp.buf.format({async = true})<CR>", {silent = true})
+map("n", "<space>f", "<Cmd>lua vim.lsp.buf.format({async = true})<CR>", { silent = true })
 map("v", "<space>c", "yh/<C-r>0<CR>cgn", { silent = false })
+
+map("n", "<space>db", "<Cmd>DBUIToggle<CR>", { silent = true })

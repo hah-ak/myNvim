@@ -7,14 +7,11 @@ return require('packer').startup(function(use)
     -- 컬러스키마
     use 'folke/lsp-colors.nvim'
     -- ui테마 
-    use 'folke/tokyonight.nvim'
+    use { "ellisonleao/gruvbox.nvim" }
     -- 안내문구 테마
     use {
       "folke/trouble.nvim",
-      requires = "kyazdani42/nvim-web-devicons",
     }
-    --lsp_progress
-    use 'arkav/lualine-lsp-progress'
     -- 자동완성
     use {'hrsh7th/nvim-cmp',
         requires = {
@@ -24,7 +21,8 @@ return require('packer').startup(function(use)
             'hrsh7th/cmp-cmdline',
             'hrsh7th/cmp-nvim-lua',
             'L3MON4D3/LuaSnip',
-            'saadparwaiz1/cmp_luasnip'
+            'saadparwaiz1/cmp_luasnip',
+            'rcarriga/cmp-dap'
         }
     }
     -- snippets
@@ -58,23 +56,19 @@ return require('packer').startup(function(use)
     }
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {'nvim-telescope/telescope-ui-select.nvim' }
+    use {'nvim-telescope/telescope-dap.nvim'}
     --nvimtree
     use {
         'kyazdani42/nvim-tree.lua',
-        requires = {
-        'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
     -- tab bar
     use {
-        'romgrk/barbar.nvim',
-        requires = {'kyazdani42/nvim-web-devicons'}
+        'romgrk/barbar.nvim'
     }
     --status bar
     use {
-        'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+        'nvim-lualine/lualine.nvim'
     }
     -- icons
     use 'kyazdani42/nvim-web-devicons'
@@ -105,16 +99,17 @@ return require('packer').startup(function(use)
     }
     use {"lukas-reineke/indent-blankline.nvim"}
     --git
-    -- use {
-    --     'lewis6991/gitsigns.nvim',
-    --     tag = 'release'
-    -- }
-    use {'tanvirtin/vgit.nvim'}
-    use {'tpope/vim-fugitive'}
-
+    use {
+        'lewis6991/gitsigns.nvim',
+        tag = 'release'
+    }
     -- debug 
     use {"mfussenegger/nvim-dap"}
     use {"rcarriga/nvim-dap-ui"}
+    -- database
+    use 'tpope/vim-dadbod'
+    use 'kristijanhusak/vim-dadbod-ui'
+    use 'kristijanhusak/vim-dadbod-completion'
 end)
 
 
