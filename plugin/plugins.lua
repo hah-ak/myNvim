@@ -9,9 +9,7 @@ return require('packer').startup(function(use)
     -- ui테마 
     use { "ellisonleao/gruvbox.nvim" }
     -- 안내문구 테마
-    use {
-      "folke/trouble.nvim",
-    }
+    use {"folke/trouble.nvim",}
     -- 자동완성
     use {'hrsh7th/nvim-cmp',
         requires = {
@@ -28,10 +26,7 @@ return require('packer').startup(function(use)
     -- snippets
     use "rafamadriz/friendly-snippets"
     -- 단어 키워드 및 용도 별로 색지정
-    use {
-        'm-demare/hlargs.nvim',
-        requires = { 'nvim-treesitter/nvim-treesitter' }
-    }
+    use 'm-demare/hlargs.nvim'
     -- lsp
     use {
         "williamboman/mason.nvim",
@@ -45,31 +40,18 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
-    use({
-        "glepnir/lspsaga.nvim",
-        branch = "main"
-    })
+    use({"glepnir/lspsaga.nvim",branch = "main"})
     -- telescope
-    use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        requires = { {'nvim-lua/plenary.nvim'} }
-    }
+    use {'nvim-telescope/telescope.nvim', tag = '0.1.0'}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
     use {'nvim-telescope/telescope-ui-select.nvim' }
     use {'nvim-telescope/telescope-dap.nvim'}
     --nvimtree
-    use {
-        'kyazdani42/nvim-tree.lua',
-        tag = 'nightly' -- optional, updated every week. (see issue #1193)
-    }
+    use {'kyazdani42/nvim-tree.lua',tag = 'nightly'}
     -- tab bar
-    use {
-        'romgrk/barbar.nvim'
-    }
+    use {'romgrk/barbar.nvim'}
     --status bar
-    use {
-        'nvim-lualine/lualine.nvim'
-    }
+    use {'nvim-lualine/lualine.nvim'}
     -- icons
     use 'kyazdani42/nvim-web-devicons'
     --comment
@@ -78,31 +60,16 @@ return require('packer').startup(function(use)
         config = function()
             require('Comment').setup()
         end
-    }
-    -- autosave
-    -- use{
-        -- "Pocco81/auto-save.nvim",
-        -- config = function()
-        --      require("auto-save").setup {
-        --         -- your config goes here
-        --         -- or just leave it empty :)
-        --      }
-        -- end,
-    -- }
+    } 
     -- autopair
-    use {
-	    "windwp/nvim-autopairs",
-    }
+    use {"windwp/nvim-autopairs"}
     --indent
-    use {
-        'nmac427/guess-indent.nvim',
-    }
+    use {'nmac427/guess-indent.nvim'}
     use {"lukas-reineke/indent-blankline.nvim"}
     --git
-    use {
-        'lewis6991/gitsigns.nvim',
-        tag = 'release'
-    }
+    use {'lewis6991/gitsigns.nvim',tag = 'release'}
+    --whichkey
+    use "folke/which-key.nvim"
     -- debug 
     use {"mfussenegger/nvim-dap"}
     use {"rcarriga/nvim-dap-ui"}
