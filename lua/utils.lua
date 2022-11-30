@@ -18,7 +18,6 @@ local openWinConfig = {
 	border = "single",
 	anchor = "NW",
 }
-
 function exportFunctions.createFloatBuffer(texts)
 	print(texts)
 	local isClose = (function()

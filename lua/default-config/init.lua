@@ -46,8 +46,10 @@ gitsigns.setup({
     end,
 })
 
-map("n", "<space>tt", "<Cmd>NvimTreeToggle<CR>", { silent = true })
-map("n", "<space>tf", "<Cmd>NvimTreeFindFile<CR>", { silent = true })
+require("which-key").setup{}
+
+map("n", "<space>ntt", "<Cmd>NvimTreeToggle<CR>", { silent = true })
+map("n", "<space>ntf", "<Cmd>NvimTreeFindFile<CR>", { silent = true })
 
 map("n", "<space>f", "<Cmd>lua vim.lsp.buf.format({async = true})<CR>", { silent = true })
 map("v", "<space>c", "yh/<C-r>0<CR>cgn", { silent = false })
