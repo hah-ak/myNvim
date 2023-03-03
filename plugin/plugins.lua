@@ -4,10 +4,11 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     -- luahellper
     use 'nvim-lua/plenary.nvim'
-    -- 컬러스키마
     use 'folke/lsp-colors.nvim'
-    -- ui테마 
-    use { "ellisonleao/gruvbox.nvim" }
+    -- 컬러스키마
+    use {'EdenEast/nightfox.nvim'}
+    use {'dracula/vim', as='dracula'}
+    use {'sainnhe/everforest'}
     -- 안내문구 테마
     use {"folke/trouble.nvim",}
     -- 자동완성
@@ -23,6 +24,8 @@ return require('packer').startup(function(use)
             'rcarriga/cmp-dap'
         }
     }
+    -- code action icon
+    use "onsails/lspkind.nvim"
     -- snippets
     use "rafamadriz/friendly-snippets"
     -- 단어 키워드 및 용도 별로 색지정
