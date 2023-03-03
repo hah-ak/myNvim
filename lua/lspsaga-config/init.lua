@@ -3,7 +3,8 @@ local ok, saga = pcall(require, "lspsaga")
 local ok, wk = pcall(require, "which-key")
 local keymap = vim.keymap.set
 
-saga.init_lsp_saga({})
+-- saga.init_lsp_saga({})
+saga.setup({})
 
 -- wk.register({
 --   s = {
@@ -17,14 +18,14 @@ saga.init_lsp_saga({})
 keymap("n", "<leader>sh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- Code action
-keymap("n", "<leader>sa", "<cmd>Lspsaga code_action<CR>", { silent = true })
-keymap("v", "<leader>sa", "<cmd><C-U>Lspsaga range_code_action<CR>", { silent = true })
+keymap({"n","v"}, "<leader>sa", "<cmd>Lspsaga code_action<CR>", { silent = true })
 
 -- Rename
 keymap("n", "<leader>sr", "<cmd>Lspsaga rename<CR>", { silent = true })
 
 -- Definition preview
 keymap("n", "<leader>sD", "<cmd>Lspsaga peek_definition<CR>", { silent = true })
+keymap("n", "<leader>sg", "<cmd>Lspsaga goto_definition<CR>", { silent = true })
 
 -- Show line diagnostics
 keymap("n", "<leader>ssd", "<cmd>Lspsaga show_line_diagnostics<CR>", { silent = true })
@@ -45,12 +46,14 @@ keymap("n", "<leader>sEw", function()
 end, { silent = true })
 
 -- Outline
-keymap("n", "<leader>so", "<cmd>LSoutlineToggle<CR>", { silent = true })
+keymap("n", "<leader>so", "<cmd>Lspsaga outline<CR>", { silent = true })
 
 -- Hover Doc
 keymap("n", "<leader>sd", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
+-- Callhierarchy
+keymap("n", "<Leader>si", "<cmd>Lspsaga incoming_calls<CR>")
+keymap("n", "<Leader>sO", "<cmd>Lspsaga outgoing_calls<CR>")
+
 -- float terminal also you can pass the cli command in open_float_terminal function
-keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
-keymap("n", "<A-f>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
-keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+keymap({"n", "t"}, "<A-d>", "<cmd>Lspsaga term_toggle<CR>", { silent = true })

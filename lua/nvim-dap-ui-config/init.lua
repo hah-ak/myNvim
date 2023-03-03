@@ -40,16 +40,15 @@ dapui.setup({
   },
 })
 function exportFunctions.floatingSelect()
-  vim.ui.select({"scopes","wathces","breakpoints","stacks","console","repl"}, {
-    prompt="select element_id",
+  vim.ui.select({ "scopes", "wathces", "breakpoints", "stacks", "console", "repl" }, {
+    prompt = "select element_id",
     format_item = function(item)
       return item
     end,
-  }, function (element,idx)
-    require'dapui'.float_element(element, {width = 70, height = 25, enter = true})
+  }, function(element, idx)
+    require("dapui").float_element(element, { width = 70, height = 25, enter = true })
   end)
 end
-
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
   dapui.open()
@@ -61,10 +60,10 @@ dap.listeners.before.event_exited["dapui_config"] = function()
   dapui.close()
 end
 
-map("n", "<space>def", "<Cmd>lua require'nvim-dap-ui-config.init'.floatingSelect()<CR>",opts)
+map("n", "<space>def", "<Cmd>lua require'nvim-dap-ui-config.init'.floatingSelect()<CR>", opts)
 map("n", "<space>dee", "<Cmd>lua require'dapui'.eval()<CR>", opts)
 map("n", "<space>det", "<Cmd>lua require'dapui'.toggle({reset=true})<CR>", opts)
-map("n", "<F3>", "<Cmd>lua require'dap'.close()<CR>", opts)
+map("n", "<F3>", "<Cmd>lua require'dap'.terminate()<CR>", opts)
 map("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>", opts)
 map("n", "<F8>", "<Cmd>lua require'dap'.step_over()<CR>", opts)
 map("n", "<F9>", "<Cmd>lua require'dap'.step_into()<CR>", opts)

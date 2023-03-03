@@ -1,16 +1,16 @@
 vim.o.background = "dark"
-vim.cmd([[colorscheme gruvbox]])
-vim.cmd([[set nohidden]])
+vim.cmd([[colorscheme nightfox]])
 vim.o.smartindent = true
-vim.o.expandtab = true
 vim.o.updatetime = 300
 vim.o.incsearch = false
 vim.wo.signcolumn = "yes"
-vim.o.shiftwidth = 2
 vim.wo.number = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
+vim.o.hidden = true
+
+vim.cmd([[autocmd FileType * set expandtab shiftwidth=2 tabstop=4 softtabstop=4]])
 
 ---WORKAROUND
 -- vim.api.nvim_create_autocmd({ 'BufEnter', 'BufAdd', 'BufNew', 'BufNewFile', 'BufWinEnter' }, {
@@ -33,6 +33,25 @@ require("nvim-tree").setup({
         ignore = false,
     },
 })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+    pattern = "*",
+    callback = function()
+        if vim.bo.filetype == "NvimTree" then
+            require("bufferline.api").set_offset(31, "FileTree")
+        end
+    end,
+})
+
+vim.api.nvim_create_autocmd("BufWinLeave", {
+    pattern = "*",
+    callback = function()
+        if vim.fn.expand("<afile>"):match("NvimTree") then
+            require("bufferline.api").set_offset(0)
+        end
+    end,
+})
+
 local ok, gitsigns = pcall(require, "gitsigns")
 if not ok then
     print("not ok")
@@ -46,7 +65,7 @@ gitsigns.setup({
     end,
 })
 
-require("which-key").setup{}
+require("which-key").setup({})
 
 map("n", "<space>ntt", "<Cmd>NvimTreeToggle<CR>", { silent = true })
 map("n", "<space>ntf", "<Cmd>NvimTreeFindFile<CR>", { silent = true })

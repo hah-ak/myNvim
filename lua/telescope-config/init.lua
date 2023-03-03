@@ -3,27 +3,27 @@ local rtnMap = {
   texts = { "' exact", "^ is prefix", "$ suffix", "! not include", "!^ do not start", "!abc$ do not end" },
 }
 local config = {
-	defaults = {
-		mappings = {
-			i = {
-				["<C-h>"] = "which_key",
-				["<C-g>"] = {
-					"<cmd>lua require('lua.utils').createFloatBuffer(require('lua.telescope-config.init').texts)<CR>",
-					type = "command",
-					opts = { silent = true },
-				},
-			},
-		},
-	},
-	pickers = {},
-	extensions = {
-		fzf = {
-			fuzzy = true,
-			override_genric_sorter = true,
-			override_file_sorter = true,
-			case_mode = "smart_case",
-		},
-	},
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-h>"] = "which_key",
+        ["<C-g>"] = {
+          "<cmd>lua require('lua.utils').createFloatBuffer(require('lua.telescope-config.init').texts)<CR>",
+          type = "command",
+          opts = { silent = true },
+        },
+      },
+    },
+  },
+  pickers = {},
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_genric_sorter = true,
+      override_file_sorter = true,
+      case_mode = "smart_case",
+    },
+  },
 }
 telescope.setup(config)
 
