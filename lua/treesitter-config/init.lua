@@ -6,7 +6,6 @@ require("nvim-treesitter.configs").setup({
 		"css",
 		"dockerfile",
 		"hcl",
-		"help",
 		"html",
 		"http",
 		"javascript",
@@ -25,6 +24,7 @@ require("nvim-treesitter.configs").setup({
 		"java",
 		"typescript",
 		"tsx",
+        "markdown_inline"
 	},
 	highlight = {
 		enable = true,

@@ -43,7 +43,13 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
-    use({"glepnir/lspsaga.nvim",branch = "main"})
+    use({"glepnir/lspsaga.nvim",branch = "main",opt = true, event="LspAttach",config = function ()
+      require("lspsaga").setup({})
+    end,
+    requires = {
+      {"nvim-tree/nvim-web-devicons"},
+      {"nvim-treesitter/nvim-treesitter"}
+    }})
     -- telescope
     use {'nvim-telescope/telescope.nvim', tag = '0.1.0'}
     use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
@@ -52,11 +58,11 @@ return require('packer').startup(function(use)
     --nvimtree
     use {'kyazdani42/nvim-tree.lua',tag = 'nightly'}
     -- tab bar
-    use {'romgrk/barbar.nvim'}
+    use {'romgrk/barbar.nvim',requires = {{"nvim-tree/nvim-web-devicons"}}}
     --status bar
     use {'nvim-lualine/lualine.nvim'}
     -- icons
-    use 'kyazdani42/nvim-web-devicons'
+    use 'nvim-tree/nvim-web-devicons'
     --comment
     use {
         'numToStr/Comment.nvim',
