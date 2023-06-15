@@ -1,5 +1,5 @@
 vim.o.background = "dark"
-vim.cmd([[colorscheme nightfox]])
+vim.cmd("colorscheme nightfox")
 vim.o.smartindent = true
 vim.o.updatetime = 300
 vim.o.incsearch = false

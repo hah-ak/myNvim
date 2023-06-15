@@ -1,10 +1,10 @@
 local ok, utils = pcall(require, "utils")
-local ok, saga = pcall(require, "lspsaga")
+-- local ok, saga = pcall(require, "lspsaga")
 local ok, wk = pcall(require, "which-key")
 local keymap = vim.keymap.set
 
 -- saga.init_lsp_saga({})
-saga.setup({})
+-- saga.setup()
 
 -- wk.register({
 --   s = {
@@ -39,10 +39,10 @@ keymap("n", "<leader>sed", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = t
 
 -- Only jump to error
 keymap("n", "<leader>sEd", function()
-  require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+  require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end, { silent = true })
 keymap("n", "<leader>sEw", function()
-  require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+  require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
 end, { silent = true })
 
 -- Outline

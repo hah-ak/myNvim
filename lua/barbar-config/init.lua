@@ -28,19 +28,23 @@ map("n", "<Space>bd", "<Cmd>BufferOrderByDirectory<CR>", opts)
 map("n", "<Space>bl", "<Cmd>BufferOrderByLanguage<CR>", opts)
 map("n", "<Space>bw", "<Cmd>BufferOrderByWindowNumber<CR>", opts)
 
+vim.g.barbar_auto_setup = false
 local uioptions = {
   animation = true,
   auto_hide = false,
   tabpages = true,
   closeable = true,
   clickable = true,
-  icons = true,
-  icon_custome_colors = false,
-  icon_separator_active = "▎",
-  icon_separator_inactive = "▎",
-  icon_close_tab = "",
-  icon_close_tab_modified = "●",
-  icon_pinned = "車",
+  icons = {
+    filetype = {
+      custome_colors = false,
+      enabled = true
+    },
+    separator = {left = "▎", right = ''},
+    inactive = {button = ""},
+    modified = {button = "●"},
+    pinned = {button = "車"},
+  },
   insert_at_end = false,
   insert_at_start = false,
   maximum_padding = 1,
@@ -50,4 +54,4 @@ local uioptions = {
   no_name_title = nil,
 }
 
-require("bufferline").setup(uioptions)
+require("bufferline").setup({})

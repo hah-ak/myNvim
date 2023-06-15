@@ -41,7 +41,7 @@ local jts_lsp_config = {
 -- nvim_lsp.util.default_config = vim.tbl_deep_extend('force',nvim_lsp.util.default_config,lsp_default)
 
 require("rust-tools").setup()
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       runtime = {
