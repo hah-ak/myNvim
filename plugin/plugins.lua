@@ -43,7 +43,7 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
     }
-    use({"glepnir/lspsaga.nvim",branch = "main",opt = true, event="LspAttach",config = function ()
+    use({"nvimdev/lspsaga.nvim",after='nvim-lspconfig',config = function ()
       require("lspsaga").setup({})
     end,
     requires = {
@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
     use {'nmac427/guess-indent.nvim'}
     use {"lukas-reineke/indent-blankline.nvim"}
     --git
-    use {'lewis6991/gitsigns.nvim',tag = 'release'}
+    use {'lewis6991/gitsigns.nvim'}
     --whichkey
     use "folke/which-key.nvim"
     -- debug 
